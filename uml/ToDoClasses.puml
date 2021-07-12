@@ -1,0 +1,105 @@
+@startuml
+
+class ToDoMain {
+    + main()
+    + start()
+}
+
+class ToDoListController {
+    - stage
+    - mainLists
+    - tableView
+    - titleColumn
+    + initialize()
+    + openNewList()
+    + exportAllLists()
+    + loadAllLists()
+    + viewSelectedList()
+    + removeSelectedList()
+    + switchSceneNew()
+    + switchSceneView()
+    + setPrimaryStage()
+    + passMainList()
+}
+
+class NewToDoController {
+    - allLists
+    - tempItems
+    - titleColumn
+    - descriptionField
+    - dateField
+    - newTableView
+    - newDescriptionColumn
+    - newDueDateColumn
+
+    + initialize()
+    + addItemToTempList()
+    + saveNewList()
+    + cancelNewItem()
+    + loadList()
+    + removeSelectedItem()
+    + switchSceneMain()
+    + passMainList()
+}
+
+class ViewToDoController {
+    - allLists
+    - tempItems
+    - sorted
+    - selectedListIndex
+    - viewItemTableview
+    - viewDescriptionColumn
+    - viewDueDateColumn
+    - viewCompleteColumn
+    - sortCompletedButton
+
+    + initialize()
+    + addItemToTempListView()
+    + exportCurrentList()
+    + goToMain()
+    + markItemAsComplete()
+    + completedSort()
+    + removeSelectedItemView()
+    + saveCurrentList()
+    + passMainList()
+    + display()
+    + setSelectedListIndex()
+    + goMainScreen()
+}
+
+class ToDoList {
+    - title
+    - items
+
+    + ToDoList()
+    + getTitle()
+    + setTitle()
+    + getItems()
+}
+
+class ToDoListItem {
+    - description
+    - duedate
+    - completed
+
+    + getDescription()
+    + setDescription()
+    + getDuedate()
+    + setDuedate()
+    + isCompleted()
+    + setCompleted()
+}
+
+javafx.ToDoApplication <|-- ToDoMain
+
+ToDoMain -- ToDoListController
+ToDoMain -- NewToDoController
+ToDoMain -- ViewToDoController
+
+ToDoListController -- ToDoList
+NewToDoController -- ToDoList
+ViewToDoController -- ToDoList
+
+ToDoListItem -- ToDoList
+
+@enduml
